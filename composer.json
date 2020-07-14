@@ -1,0 +1,7 @@
+{
+  "autoload":{
+    "psr-4": {
+      "MyProject1\\": "src/"
+    }
+  }
+}
