@@ -1,7 +1,7 @@
 <?php
 return [
-    'homeUrl'=>'http://localhost/MyProject1/',
-    'homeUri'=>'/MyProject1/',
+    'homeUrl'=>'http://localhost/basic-project/',
+    'homeUri'=>'/basic-project/',
     'database'=>[
         'host'=>'localhost',
         'username'=>'root',

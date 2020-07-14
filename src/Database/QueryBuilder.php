@@ -188,7 +188,6 @@ class QueryBuilder
 
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
         $this->oDb->close();
     }
 }

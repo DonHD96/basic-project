@@ -3,13 +3,13 @@
 namespace MyProject1\Model;
 
 use MyProject1\Database\Connection;
+use MyProject1\Database\QueryBuilder;
 
 class PositionModel
 {
     public static function getAll()
     {
-        $db = Connection::makeConnection();
-        $query = $db->query("SELECT * from positions");
-        return $query ? $query : "The query is failed" . $db->error;
+        return QueryBuilder::table('position')
+            ->getAll();
     }
 }
