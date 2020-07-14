@@ -34,7 +34,7 @@ class EmployeeController
     public function addEmployee()
     {
         Session::destroy('error-employee');
-        required(['name','address','email','phone'],'error-employee','addEmployee');
+        required(['name','address','email','phone'],'error-employee','add-employee');
         if (!EmployeeModel::isEmployeeExists($_POST['email']) && !EmployeeModel::isEmployeeExists($_POST['phone'])) {
             $path = './image/' . $_FILES['image']['name'];
             $img_tmp = $_FILES['image']['tmp_name'];
