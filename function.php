@@ -42,4 +42,10 @@ if (!function_exists('runDatabase')) {
     }
 }
 
+function checkLogin(){
+    if(empty(Session::getCurrentUserLoggedIn())){
+        Redirect::to('login');exit;
+    }
+}
+
 

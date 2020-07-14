@@ -14,16 +14,19 @@ class EmployeeController
     //GET
     public function loadView()
     {
+        checkLogin();
         view('employee');
     }
 
     public function viewAdd()
     {
+        checkLogin();
         view('employee/add');
     }
 
     public function viewUpdate()
     {
+        checkLogin();
         view('employee/update');
     }
 

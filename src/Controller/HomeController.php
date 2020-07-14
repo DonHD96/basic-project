@@ -10,8 +10,7 @@ class HomeController
     //GET
     public function loadView()
     {
-
+        checkLogin();
         view('home');
-
     }
 }

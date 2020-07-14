@@ -11,10 +11,11 @@ class UserController
 {
     //GET
     public function viewAdd(){
+        checkLogin();
         view('users/add');
     }
     public function viewUpdate(){
-        echo "Hello";
+        checkLogin();
     }
     public function deleteUser($id){
         $status = UsersModel::deleteUser($id);
