@@ -15,7 +15,6 @@ if (!function_exists('view')) {
      */
     function view($file, $aWith = [])
     {
-        extract($aWith);
 
         return include "views/" . $file . ".php";
     }
@@ -35,17 +34,32 @@ if (!function_exists('required')) {
 if (!function_exists('runDatabase')) {
     function runDatabase()
     {
-        if(Database::createDatabase() && EmployeeTable::createEmployee() && ResetTable::createReset() && UserTable::createUser()){
+        if (Database::createDatabase() && EmployeeTable::createEmployee() && ResetTable::createReset() && UserTable::createUser()) {
             return true;
         }
         return false;
     }
 }
 
-function checkLogin(){
-    if(empty(Session::getCurrentUserLoggedIn())){
-        Redirect::to('login');exit;
+function checkLogin()
+{
+    if (empty(Session::getCurrentUserLoggedIn())) {
+        Redirect::to('login');
+        exit;
     }
 }
 
+function setupCookie($aCookie)
+{
+    foreach ($aCookie as $key => $val) {
 
+        setcookie($key, $val, time()+8400 , '/', false,false, true);
+    }
+}
+
+function unsetCookie($aCookie)
+{
+    foreach ($aCookie as $key => $val){
+        setcookie($key, '', time()-1 , '/', false,false, true);
+    }
+}

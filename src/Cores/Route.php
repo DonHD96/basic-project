@@ -93,7 +93,8 @@ class Route
             try {
                 return $this->callAction(...$aParseRoute);
             } catch (\Exception $e) {
-
+                echo $e->getMessage();
+                die;
             }
         }
     }
