@@ -29,7 +29,7 @@ $oRouter->get('delete-user/{id}','MyProject1\Controller\UserController@deleteUse
 $oRouter->get('update-user/{id}','MyProject1\Controller\UserController@viewUpdate');
 //Forgot Password
 $oRouter->get('verify-email','MyProject1\Controller\ForgotPasswordController@viewEnterEmail');
-$oRouter->post('verify-email','MyProject1\Controller\ForgotPasswordController@handleEmail');
+$oRouter->post('verify-email','MyProject1\Controller\ForgotPasswordController@handleEmailOrUser');
 $oRouter->get('reset-password/{token}','MyProject1\Controller\ForgotPasswordController@viewReset');
 $oRouter->post('reset-password/{token}','MyProject1\Controller\ForgotPasswordController@handlePassword');
 //Position

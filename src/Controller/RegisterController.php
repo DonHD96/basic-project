@@ -24,8 +24,9 @@ class RegisterController
         if (!UsersModel::isUserExists($_POST['username']) && !UsersModel::isUserExists($_POST['email']))  {
             $userId = UsersModel::insertUser($_POST['username'], $_POST['password'], $_POST['email']);
             if ($userId){
+                Session::setCurrentUserLoggedIn($_POST['username']);
                 Session::set('register-error','Sign Up Success');
-                Redirect::to('login');
+                Redirect::to('home');
             } else {
                 Session::set('register-error','The query  is incorrect');
                 Redirect::to('register');

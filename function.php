@@ -8,14 +8,8 @@ use \MyProject1\Database\ResetTable;
 use \MyProject1\Database\UserTable;
 
 if (!function_exists('view')) {
-    /**
-     * @param $file
-     *
-     * @return mixed
-     */
-    function view($file, $aWith = [])
+    function view($file)
     {
-
         return include "views/" . $file . ".php";
     }
 }

@@ -11,3 +11,7 @@ if (!runDatabase()) {
     echo 'We could not run database';
 }
 Route::load('config/route.php')->direct(Request::uri(), Request::method());
+
+
+
+

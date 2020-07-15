@@ -66,7 +66,7 @@ class EmployeeController
         Session::destroy('error-employee');
         $path = './image/' . $_FILES['image']['name'];
         $img_tmp = $_FILES['image']['tmp_name'];
-        required(['name','address','email','phone'],'error-employee','update-employee/'.$id);
+        required(['name','address','email','phone'],'error-update-employee','update-employee/'.$id);
         if (EmployeeModel::updateEmployee($id, $_POST['name'], $_POST['address'], $_POST['email'], $_POST['phone'], $path)) {
             move_uploaded_file($img_tmp, $path);
             Redirect::to('employee');

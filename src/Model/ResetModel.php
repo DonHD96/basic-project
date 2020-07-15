@@ -7,11 +7,11 @@ use MyProject1\Database\QueryBuilder;
 
 class ResetModel
 {
-    public static function insertToken($email, $token)
+    public static function insertToken($userInfo, $token)
     {
         return QueryBuilder::table('reset')
             ->insert([
-                'email' => $email,
+                'userInfo' => $userInfo,
                 'token' => $token
             ]);
     }

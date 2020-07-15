@@ -6,6 +6,7 @@ use MyProject1\Cores\Redirect;
 use MyProject1\Cores\Session;
 use MyProject1\Model\ResetModel;
 use MyProject1\Model\UsersModel;
+
 require_once 'function.php';
 
 class ForgotPasswordController
@@ -22,32 +23,41 @@ class ForgotPasswordController
     }
 
     //POST
-    public function handleEmail()
+    public function handleEmailOrUser()
     {
-        Session::destroy('error-email');
-        if (UsersModel::isUserExists($_POST['email'])) {
+        Session::destroy('error-usernameOrEmail');
+        Session::destroy('error-reset');
+        Session::destroy('success-reset');
+        if (UsersModel::isUserExists($_POST['usernameOrEmail']) or UsersModel::isUserExists($_POST['usernameOrEmail'])) {
             $token = bin2hex(random_bytes(10));
-            ResetModel::insertToken($_POST['email'], $token);
-            Redirect::to('reset-password/'.$token);
+            ResetModel::insertToken($_POST['usernameOrEmail'], $token);
+            Redirect::to('reset-password/' . $token);
         } else {
-            Session::set('error-email','The email '.$_POST['email'].' is not exits .');
+            if (strpos($_POST['usernameOrEmail'], '@')) {
+                if (strpos($_POST['usernameOrEmail'], '@gmail.com')) {
+                    Session::set('error-usernameOrEmail', 'The email " ' . $_POST['usernameOrEmail'] . ' " is not exists .');
+                } else {
+                    Session::set('error-usernameOrEmail', 'Please enter the correct syntax ...@gmail.com .');
+                }
+            } else {
+                Session::set('error-usernameOrEmail', 'The username " ' . $_POST['usernameOrEmail'] . ' " is not exists .');
+            }
             Redirect::to('verify-email');
         }
     }
 
     public function handlePassword($token)
     {
-        Session::destroy('error-reset');
-        $email = ResetModel::getEmailByToken($token)['email'];
-        if($_POST['new_password'] == $_POST['new_password_c']){
-            if(UsersModel::updatePassword($_POST['new_password'], $email)){
-                Session::set('error-reset','Your password has been changed successfully! Thank you!');
-                Redirect::to('reset-password/'.$token);
+        $userInfo = ResetModel::getEmailByToken($token)['userInfo'];
+        if ($_POST['new_password'] == $_POST['new_password_c']) {
+            if (UsersModel::updatePassword($_POST['new_password'], $userInfo)) {
+                Session::destroy('error-reset');
+                Session::set('success-reset', 'Your password has been changed successfully! Thank you!');
+                Redirect::to('reset-password/' . $token);
             }
-        }
-        else{
-            Session::set('error-reset','The password confirmation does not match.');
-            Redirect::to('reset-password/'.$token);
+        } else {
+            Session::set('error-reset', 'The password confirmation does not match.');
+            Redirect::to('reset-password/' . $token);
         }
     }
 }

@@ -10,6 +10,16 @@ $aEmployee = EmployeeModel::getEmployeeById($route[1]);
 ?>
     <h4 id="home">UPDATE EMPLOYEE</h4>
     <br>
+    <div id="home">
+        <?php if (Session::get('error-update-employee')): ?>
+            <div class="ui warning message">
+                <div class="header">
+                    <?= Session::get('error-update-employee'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <br>
     <div class="ui segment" id="home">
         <form class="ui form" method="post" action="<?= Url::url('update-employee').'/'.$aEmployee['ID']; ?>" enctype="multipart/form-data">
             <div class="field">
@@ -32,16 +42,10 @@ $aEmployee = EmployeeModel::getEmployeeById($route[1]);
                 <label>Image</label>
                 <input type="file" name="image" value="<?= $aEmployee['image']; ?>">
             </div>
-            <div  id="home">
-                <?= isset($_SESSION['error'])?$_SESSION['error']: ''; ?>
-            </div>
+
             <button onclick=" return confirm('Are you sure you want to save this entry ?')" class="ui button" type="submit">Save</button>
             <a  href="<?= Url::url('employee'); ?>" class="ui button" type="submit">Back</a>
         </form>
-        <br>
-        <div>
-            <?= Session::get('error-employee') ;?>
-        </div>
     </div>
 
 

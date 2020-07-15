@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <base href="<?= \MyProject1\Cores\Url::url() ?>"> <!--Tạo ra url cơ sở-->
-    <title>Document</title>
+    <title>DonKiHoTe</title>
     <link rel="stylesheet" href="assets/semantic-ui/semantic.css">
     <style>
         #root {

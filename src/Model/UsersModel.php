@@ -62,17 +62,29 @@ class UsersModel
             ->delete('ID', $id);
     }
 
-    public static function updatePassword($password, $email)
+    public static function updatePassword($password, $userInfo)
     {
         $password = md5($password);
-        $status = QueryBuilder::table('users')
-            ->update([
+        $status = QueryBuilder::table('users');
+        if(strpos($userInfo,'@')){
+            $status->update([
                 'password' => $password
             ],
                 //Where
                 [
-                    'email' => $email
+                    'email' => $userInfo
                 ]);
+        }
+        else{
+            $status->update([
+                'password' => $password
+            ],
+                //Where
+                [
+                    'username' => $userInfo
+                ]);
+        }
+
         if (!$status) {
             return $status;
         }

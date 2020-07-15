@@ -6,6 +6,14 @@ use \MyProject1\Cores\Session;
 <div id="login">
     <div class="ui middle aligned center aligned grid">
         <div class="column">
+            <?php if(Session::get('login-error')): ?>
+            <div class="ui warning message">
+                <div class="header">
+                    <?= Session::get('login-error') ;?>
+                </div>
+            </div>
+            <?php endif;?>
+
             <form class="ui large form" method="post" action="<?= Url::url('login'); ?>">
                 <div class="ui stacked segment">
                     <div class="field">
@@ -34,9 +42,6 @@ use \MyProject1\Cores\Session;
             <div class="ui message">
                 <p><a href="<?= URL::url('verify-email'); ?>">Forgot your password?</a></p>
                 New to us? <a href="<?= URL::url('register'); ?>">Sign Up</a>
-            </div>
-            <div>
-                <?= Session::get('login-error') ;?>
             </div>
         </div>
     </div>

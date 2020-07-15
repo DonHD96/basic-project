@@ -1,6 +1,6 @@
 <?php
 return [
-    'homeUrl'=>'http://localhost/basic-project/',
+    'homeUrl'=>'http://localhost:8080/basic-project/',
     'homeUri'=>'/basic-project/',
     'database'=>[
         'host'=>'localhost',

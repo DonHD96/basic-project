@@ -7,9 +7,9 @@ class ResetTable
     public static function createReset()
     {
         $db = Connection::makeConnection();
-        $query = $db->query("create table if not exists password_reset(
+        $query = $db->query("create table if not exists reset(
         ID bigint(20) unsigned auto_increment primary key,
-        email varchar(50) not null,
+        userInfo varchar(50) not null,
         token varchar(255) not null
         )");
         if (!$query) {
